@@ -23,6 +23,11 @@ angular.module('capstone', ['ionic','firebase'])
      templateUrl: 'templates/parents/parentHome.html',
      controller: 'parentCtrl'
    })
+   .state('childHome', {
+     url: '/child/home',
+     templateUrl: 'templates/children/childHome.html',
+     controller: 'childCtrl'
+   })
  $urlRouterProvider.otherwise("/splash");
 })
 

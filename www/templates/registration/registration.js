@@ -23,7 +23,6 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
   $scope.data.registerMoreChildren4 = function(){
     $scope.data.registerMore5 = true;
   }
-  firebase.initializeApp(FURL);
 
   var ref = firebase.database().ref();
 

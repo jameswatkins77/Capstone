@@ -22,6 +22,7 @@
     <script src="templates/login/login.js"></script>
     <script src="templates/registration/registration.js"></script>
     <script src="templates/parents/parents.js"></script>
+    <script src="templates/children/child.js"></script>
 
     <!-- libraries -->
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
@@ -42,4 +43,14 @@
     <ion-nav-view>
     </ion-nav-view>
   </body>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyArnFTl4mh9mVKoQRuxfk84bUqwzffVUt0",
+      authDomain: "capstone-bfc2e.firebaseapp.com",
+      databaseURL: "https://capstone-bfc2e.firebaseio.com",
+      storageBucket: "capstone-bfc2e.appspot.com"
+    };
+    firebase.initializeApp(config);
+  </script>
 </html>
