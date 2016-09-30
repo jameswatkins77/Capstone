@@ -1,0 +1,48 @@
+'Use Strict';
+angular.module('capstone', ['ionic','firebase'])
+
+.config(function($stateProvider, $urlRouterProvider) {
+ $stateProvider
+   .state('splash', {
+     url: '/splash',
+     templateUrl: 'templates/splash/splash.html',
+     controller: 'SplashCtrl'
+   })
+   .state('login', {
+     url: '/login',
+     templateUrl: 'templates/login/login.html',
+     controller: 'loginCtrl'
+   })
+   .state('registration', {
+     url: '/registration',
+     templateUrl: 'templates/registration/registration.html',
+     controller: 'registrationCtrl'
+   })
+   .state('parentHome', {
+     url: '/parents/home',
+     templateUrl: 'templates/parents/parentHome.html',
+     controller: 'parentCtrl'
+   })
+ $urlRouterProvider.otherwise("/splash");
+})
+
+.constant('FURL', {
+   apiKey: "AIzaSyArnFTl4mh9mVKoQRuxfk84bUqwzffVUt0",
+   authDomain: "capstone-bfc2e.firebaseapp.com",
+   databaseURL: "https://capstone-bfc2e.firebaseio.com",
+   storageBucket: "capstone-bfc2e.appspot.com"
+})
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
+})

@@ -1,0 +1,16 @@
+<ion-view view-title="hello">
+        <ion-content class="content padding-top">
+          <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
+          <div class="loginContainer">
+            <h1 class="loginTitle">Children:</h1>
+            <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> {{data.info[1].Children[1].name}} </a></button>
+            <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> {{data.info[1].Children[2].name}} </a></button>
+            <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> Add Child </a></button>
+            <button class="loginButton" type="button" name="button" ng-click="data.getUser()">Get User</button>
+          </div>
+        </ion-content>
+        <div class="bar bar-footer bar-dark">
+          <button ng-click="data.logout(data.user)" class="footerLogout footer button button-clear">Logout</button>
+          <i class="iconSize icon ion-ios-close-outline"></i>
+        </div>
+</ion-view>
