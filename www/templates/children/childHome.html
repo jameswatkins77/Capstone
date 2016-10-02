@@ -2,13 +2,13 @@
         <ion-content class="content padding-top">
           <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
           <div class="loginContainer">
-            <h1>Hi {{data.childName}}</h1>
+            <h1 class="childName">Hi {{data.childName}}</h1>
             <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> Chores </a></button>
             <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> Rewards </a></button>
           </div>
         </ion-content>
-        <div class="bar bar-footer bar-dark">
-          <button ng-click="data.logout(data.user)" class="footerLogout footer button button-clear">Logout</button>
+        <div class="bar bar-footer bar-dark footerLogout">
+          <button ng-click="data.logout(data.user)" class="footerLogoutButton" footer button button-clear">Logout</button>
           <i class="iconSize icon ion-ios-close-outline"></i>
         </div>
 </ion-view>

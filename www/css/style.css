@@ -91,3 +91,14 @@ a{
   margin-bottom: 5%;
   width: 60%;
 }
+/*Specific to childHome.html*/
+.childName{
+  margin-bottom: 15%;
+}
+.footerLogout{
+  font-size: 35px;
+}
+.footerLogoutButton{
+  margin-left: 35%;
+  font-size: 35px;
+}

@@ -24,27 +24,38 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
     $scope.data.registerMore5 = true;
   }
 
-  var ref = firebase.database().ref();
+
 
   $scope.data.register = function(parent, child){
-    firebase.auth().createUserWithEmailAndPassword(parent.email, parent.password).then(function(returnData){
-      ref.child("users").push({id: returnData.uid, name: parent.name, type: "parent"});
-      $state.go("parentHome")
-    }).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;;
-    console.log(errorCode);
-    console.log(errorMessage);
-  });
+    var ref = firebase.database().ref();
     firebase.auth().createUserWithEmailAndPassword(child.username, child.password).then(function(returnData){
-      ref.child("users").push({id: returnData.uid, name: child.name, type: "child"});
+      ref.child("users").push({id: returnData.uid, name: child.name, type: "child", chores:['example1'], rewards:['example1']});
       $state.go("parentHome");
     }).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-  });
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
+    firebase.auth().createUserWithEmailAndPassword(parent.email, parent.password).then(function(returnData){
+      ref.child("users").push({id: returnData.uid, name: parent.name, type: "parent", children: ['example1']});
+      $state.go("parentHome");
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;;
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
+    var uid = firebase.auth().currentUser.uid;
+    var ref2 = firebase.database().ref().child('users');
+    ref2.on("value", function(snapshot) {
+      let data = snapshot.val();
+      for (var id in data) {
+        if (uid === data[id].id) {
+          ref.child("users").child(id).child("children").push({child:child.name})
+        }
+      }
+    })
     // if ($scope.data.registerMore2 === true) {
     //   firebase.auth().createUserWithEmailAndPassword(child2.username, child2.password).catch(function(error) {
     //   var errorCode = error.code;

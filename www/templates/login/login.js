@@ -13,6 +13,7 @@ angular.module('capstone').controller('loginCtrl', function($scope, $rootScope, 
         for (var id in data) {
           if (uid === data[id].id) {
             if (data[id].type === "parent") {
+              console.log(id);
               $state.go("parentHome")
             } else {
               $state.go("childHome")
