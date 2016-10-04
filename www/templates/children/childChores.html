@@ -1,0 +1,14 @@
+<ion-view view-title="hello">
+        <ion-content class="content padding-top">
+          <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
+          <div class="loginContainer">
+            <h1>Chore List</h1>
+          </div>
+        </ion-content>
+        <div class="bar bar-footer bar-dark footerLogout">
+          <button ng-click="data.logout(data.user)" class="choreFooterLogoutButton" footer button button-clear>Logout</button>
+          <i class="iconSize icon ion-ios-close-outline" ng-click="data.logout(data.user)"></i>
+          <button footer button button-clear><a href="/#/child/{{data.id}}/rewards">Rewards</a></button>
+          <i class="iconSize icon ion-trophy"></i>
+        </div>
+</ion-view>

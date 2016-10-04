@@ -19,4 +19,8 @@ angular.module('capstone').controller('parentCtrl', function($scope, $rootScope,
       console.log("error logging out");
     });
   }
+
+  $scope.data.addChildFromParentHome = function(){
+    $state.go("registration");
+  }
 });

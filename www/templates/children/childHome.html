@@ -3,12 +3,12 @@
           <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
           <div class="loginContainer">
             <h1 class="childName">Hi {{data.childName}}</h1>
-            <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> Chores </a></button>
-            <button class="loginButton" type="button" name="button"><a href="/#/login/parent"> Rewards </a></button>
+            <button class="loginButton" type="button" name="button"><a href="/#/child/{{data.id}}/chores"> Chores </a></button>
+            <button class="loginButton" type="button" name="button"><a href="/#/child/{{data.id}}/rewards"> Rewards </a></button>
           </div>
         </ion-content>
         <div class="bar bar-footer bar-dark footerLogout">
-          <button ng-click="data.logout(data.user)" class="footerLogoutButton" footer button button-clear">Logout</button>
+          <button ng-click="data.logout(data.user)" class="footerLogoutButton" footer button button-clear>Logout</button>
           <i class="iconSize icon ion-ios-close-outline"></i>
         </div>
 </ion-view>

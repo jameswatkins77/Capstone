@@ -19,4 +19,5 @@ angular.module('capstone').controller('childCtrl', function($scope, $rootScope, 
       console.log("error logging out");
     });
   }
+  $scope.data.id = firebase.auth().currentUser.uid;
 });

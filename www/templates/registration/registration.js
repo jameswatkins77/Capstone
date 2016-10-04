@@ -24,8 +24,6 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
     $scope.data.registerMore5 = true;
   }
 
-
-
   $scope.data.register = function(parent, child){
     var ref = firebase.database().ref();
     firebase.auth().createUserWithEmailAndPassword(child.username, child.password).then(function(returnData){
@@ -39,7 +37,6 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
     });
     firebase.auth().createUserWithEmailAndPassword(parent.email, parent.password).then(function(returnData){
       ref.child("users").push({id: returnData.uid, name: parent.name, type: "parent", children: ['example1']});
-      $state.go("parentHome");
     }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;;
@@ -48,7 +45,7 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
     });
     var uid = firebase.auth().currentUser.uid;
     var ref2 = firebase.database().ref().child('users');
-    ref2.on("value", function(snapshot) {
+    ref2.on(function(snapshot) {
       let data = snapshot.val();
       for (var id in data) {
         if (uid === data[id].id) {
@@ -56,6 +53,7 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
         }
       }
     })
+    $state.go("parentHome");
     // if ($scope.data.registerMore2 === true) {
     //   firebase.auth().createUserWithEmailAndPassword(child2.username, child2.password).catch(function(error) {
     //   var errorCode = error.code;
