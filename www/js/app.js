@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('capstone', ['ionic','firebase'])
+angular.module('capstone', ['ionic','firebase','ngStorage','services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
  $stateProvider

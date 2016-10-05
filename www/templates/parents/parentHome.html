@@ -3,7 +3,25 @@
           <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
           <div class="loginContainer">
             <h1 class="loginTitle">Children:</h1>
+            <div class="" ng-repeat="name in data.info">
+              <button class="loginButton">{{name.child}}</button>
+            </div>
             <button class="loginButton" type="button" name="button" ng-click="data.addChildFromParentHome()"> Add Child </button>
+          </div>
+          <div class="list registration" ng-show="data.showChildRegistration === true">
+            <label class="registrationPassword item item-input">
+              <input type="text" name="name" value="" placeholder="Child Name" ng-model="data.child.name" required>
+            </label>
+            <label class="registrationPassword item item-input">
+              <input type="text" name="name" value="" placeholder="Child Username" ng-model="data.child.username" required>
+            </label>
+            <label class="registrationPassword item item-input">
+              <input type="password" name="name" value="" placeholder="Child Password" required>
+            </label>
+            <label class="repeatPassword item item-input">
+              <input type="password" name="name" value="" placeholder="Repeat Password" ng-model="data.child.password" required>
+            </label>
+            <button class="submitRegistration" type="button" name="button" ng-click="data.registerChild(data.child)">Register Child</button>
           </div>
         </ion-content>
         <div class="bar bar-footer bar-dark">

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('capstone').controller('loginCtrl', function($scope, $rootScope, $firebaseArray, $firebaseAuth, $state, $log, $location, $http, $ionicPopup, $firebaseObject, FURL) {
+angular.module('capstone').controller('loginCtrl', function($scope, $rootScope, $firebaseArray, $firebaseAuth, $state, $log, $location, $http, $ionicPopup, $firebaseObject, user, FURL) {
   $scope.data = {};
   $scope.data.login = function(user){
     firebase.auth().signInWithEmailAndPassword(user.email, user.password).catch(function(error) {
@@ -13,7 +13,6 @@ angular.module('capstone').controller('loginCtrl', function($scope, $rootScope, 
         for (var id in data) {
           if (uid === data[id].id) {
             if (data[id].type === "parent") {
-              console.log(id);
               $state.go("parentHome")
             } else {
               $state.go("childHome")
