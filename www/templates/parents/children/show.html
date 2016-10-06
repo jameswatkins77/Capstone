@@ -24,14 +24,14 @@
     <div class="" ng-show="data.showChildRewards === true">
       <h2>Reward List:</h2>
       <div class="choreList">
-        <ul ng-repeat="chore in data.choreInfo">
+        <ul ng-repeat="reward in data.rewardInfo">
           <li>
-            <p>Chore: {{chore.choreName}}</p>
-            <p>Notes: {{chore.choreNotes}}</p>
+            <p>Reward: {{reward.rewardName}}</p>
+            <p>Notes: {{reward.rewardNotes}}</p>
           </li>
         </ul>
       </div>
-      <button class="choreButton" type="button" name="button" ng-click="data.addChildReward()" ng-show="data.showAddRewardButton === true"> Add Reward </button>
+      <button class="submitRewardButton" type="button" name="button" ng-click="data.addChildReward()" ng-show="data.showAddRewardButton === true"> Add Reward </button>
     </div>
     <div class="list" ng-show="data.showAddChildReward === true">
       <label class="choreDetails item item-input">
@@ -40,7 +40,7 @@
       <label class="choreDetails item item-input">
         <input type="textarea" name="name" value="" placeholder="Reward Notes" ng-model="data.reward.notes">
       </label>
-      <button class="submitChoreButton" type="button" name="button" ng-click="data.submitChildReward(data.reward)">Submit Reward</button>
+      <button class="submitRewardButton" type="button" name="button" ng-click="data.submitChildReward(data.reward)">Submit Reward</button>
     </div>
   </ion-content>
   <div class="bar bar-footer bar-dark footerLogout">

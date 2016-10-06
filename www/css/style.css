@@ -118,6 +118,7 @@ a{
   font-size: 30px;
   padding: 2%;
   margin-left: 10%;
+  margin-bottom: 3%;
   border-radius: 10px;
   overflow: scroll;
 }
@@ -132,11 +133,19 @@ a{
   width: 40%;
   font-size: 25px;
   border-radius: 55px;
+  margin-bottom: 5%;
 }
 .submitChoreButton{
   background-color: gray;
   color: black;
   width: 50%;
+  font-size: 25px;
+  border-radius: 55px;
+}
+.submitRewardButton{
+  background-color: gray;
+  color: black;
+  width: 55%;
   font-size: 25px;
   border-radius: 55px;
 }

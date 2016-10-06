@@ -23,6 +23,17 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
         }
       }
     })
+    ref.child(response).child('children').once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (childUID === data[id].id) {
+          ref.child(response).child('children').child(id).child('rewards').once('value').then(function(snapshot3){
+            let data3 = snapshot3.val();
+            $scope.data.rewardInfo = data3;
+          })
+        }
+      }
+    })
   });
 
   $scope.data.logout = function(){
@@ -73,6 +84,24 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       for (var id in data) {
         if (childUID === data[id].id) {
           ref.child(parentID).child('children').child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes});
+          $state.go("parentShowChild");
+        }
+      }
+    })
+  }
+
+  $scope.data.submitChildReward = function(reward){
+    $scope.data.showChildChores = true;
+    $scope.data.showAddChoreButton = true;
+    $scope.data.showAddRewardButton = true;
+    $scope.data.showAddChildReward = false;
+    var parentID = $scope.data.currentUserId;
+    var childUID = $stateParams.id;
+    ref.child(parentID).child('children').once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (childUID === data[id].id) {
+          ref.child(parentID).child('children').child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes});
           $state.go("parentShowChild");
         }
       }
