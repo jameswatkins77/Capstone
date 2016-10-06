@@ -1,6 +1,7 @@
 'Use Strict';
 angular.module('capstone').controller('loginCtrl', function($scope, $rootScope, $firebaseArray, $firebaseAuth, $state, $log, $location, $http, $ionicPopup, $firebaseObject, user, FURL) {
   $scope.data = {};
+
   $scope.data.login = function(user){
     firebase.auth().signInWithEmailAndPassword(user.email, user.password).catch(function(error) {
       var errorCode = error.code;

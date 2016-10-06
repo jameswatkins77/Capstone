@@ -91,6 +91,7 @@ a{
   margin-bottom: 5%;
   width: 60%;
 }
+
 /*Specific to childHome.html*/
 .childName{
   margin-bottom: 15%;
@@ -102,8 +103,40 @@ a{
   margin-left: 35%;
   font-size: 35px;
 }
+
 /*Specific to childChores.html*/
 .choreFooterLogoutButton{
   margin-left: 23%;
   font-size: 35px;
+}
+
+/*Specific to parentChildShow.html*/
+.choreList{
+  background-color: white;
+  width: 80%;
+  height: 200px;
+  font-size: 30px;
+  padding: 2%;
+  margin-left: 10%;
+  border-radius: 10px;
+  overflow: scroll;
+}
+.choreDetails{
+  width: 80%;
+  margin-left: 10%;
+  padding: 1%;
+}
+.choreButton{
+  background-color: gray;
+  color: black;
+  width: 40%;
+  font-size: 25px;
+  border-radius: 55px;
+}
+.submitChoreButton{
+  background-color: gray;
+  color: black;
+  width: 50%;
+  font-size: 25px;
+  border-radius: 55px;
 }

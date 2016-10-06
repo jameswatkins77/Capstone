@@ -4,7 +4,7 @@
           <div class="loginContainer">
             <h1 class="loginTitle">Children:</h1>
             <div class="" ng-repeat="name in data.info">
-              <button class="loginButton">{{name.child}}</button>
+              <button class="loginButton"><a href="/#/parent/children/show/{{name.id}}">{{name.name}}</a></button>
             </div>
             <button class="loginButton" type="button" name="button" ng-click="data.addChildFromParentHome()"> Add Child </button>
           </div>

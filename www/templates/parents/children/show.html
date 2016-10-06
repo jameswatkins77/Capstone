@@ -1,0 +1,52 @@
+<ion-view view-title="hello">
+  <ion-content class="content padding-top">
+    <div class="" ng-show="data.showChildChores === true">
+      <h2>Chore List:</h2>
+      <div class="choreList">
+        <ul ng-repeat="chore in data.choreInfo">
+          <li>
+            <p>Chore: {{chore.choreName}}</p>
+            <p>Notes: {{chore.choreNotes}}</p>
+          </li>
+        </ul>
+      </div>
+      <button class="choreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
+    </div>
+    <div class="list" ng-show="data.showAddChildChore === true">
+      <label class="choreDetails item item-input">
+        <input type="text" name="name" value="" placeholder="Chore Name" ng-model="data.chore.name">
+      </label>
+      <label class="choreDetails item item-input">
+        <input type="textarea" name="name" value="" placeholder="Chore Notes" ng-model="data.chore.notes">
+      </label>
+      <button class="submitChoreButton" type="button" name="button" ng-click="data.submitChildChore(data.chore)">Submit Chore</button>
+    </div>
+    <div class="" ng-show="data.showChildRewards === true">
+      <h2>Reward List:</h2>
+      <div class="choreList">
+        <ul ng-repeat="chore in data.choreInfo">
+          <li>
+            <p>Chore: {{chore.choreName}}</p>
+            <p>Notes: {{chore.choreNotes}}</p>
+          </li>
+        </ul>
+      </div>
+      <button class="choreButton" type="button" name="button" ng-click="data.addChildReward()" ng-show="data.showAddRewardButton === true"> Add Reward </button>
+    </div>
+    <div class="list" ng-show="data.showAddChildReward === true">
+      <label class="choreDetails item item-input">
+        <input type="text" name="name" value="" placeholder="Reward Name" ng-model="data.reward.name">
+      </label>
+      <label class="choreDetails item item-input">
+        <input type="textarea" name="name" value="" placeholder="Reward Notes" ng-model="data.reward.notes">
+      </label>
+      <button class="submitChoreButton" type="button" name="button" ng-click="data.submitChildReward(data.reward)">Submit Reward</button>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer bar-dark footerLogout">
+    <a href="/#/parents/home"><button class="" footer button button-clear>Home</button></a>
+    <i class="iconSize icon ion-ios-home"></i>
+    <button ng-click="data.logout(data.user)" class="" footer button button-clear>Logout</button>
+    <i class="iconSize icon ion-ios-close-outline"></i>
+  </div>
+</ion-view>
