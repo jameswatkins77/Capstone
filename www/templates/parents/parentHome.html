@@ -2,11 +2,10 @@
         <ion-content class="content padding-top">
           <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
           <div class="loginContainer">
-            <h1 class="loginTitle">Children:</h1>
             <div class="" ng-repeat="name in data.info">
-              <button class="loginButton"><a href="/#/parent/children/show/{{name.id}}">{{name.name}}</a></button>
+              <button class="showChildButton"><a href="/#/parent/children/show/{{name.id}}">{{name.name}}</a></button>
             </div>
-            <button class="loginButton" type="button" name="button" ng-click="data.addChildFromParentHome()"> Add Child </button>
+            <button class="addChildButton" type="button" name="button" ng-hide="data.showChildRegistration === true" ng-click="data.addChildFromParentHome()"> Add Child </button>
           </div>
           <div class="list registration" ng-show="data.showChildRegistration === true">
             <label class="registrationPassword item item-input">
@@ -25,7 +24,7 @@
           </div>
         </ion-content>
         <div class="bar bar-footer bar-dark">
-          <button ng-click="data.logout()" class="footerLogout footer button button-clear">Logout</button>
-          <i class="iconSize icon ion-ios-close-outline"></i>
+          <button ng-click="data.logout(data.user)" class="parentFooterLogout footer button button-clear">Logout</button>
+          <i class="iconSize icon ion-ios-close-outline" ng-click="data.logout(data.user)"></i>
         </div>
 </ion-view>

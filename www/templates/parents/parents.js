@@ -108,6 +108,10 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
     })
   }
 
+  $scope.data.goParentHome = function(){
+    $state.go("parentHome");
+  }
+
   var id = $scope.data.currentUserId;
   $scope.data.registerChild = function(child){
     $scope.data.showChildRegistration = false;
