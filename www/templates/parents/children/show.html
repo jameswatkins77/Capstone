@@ -5,13 +5,23 @@
       <div class="choreList">
         <ul ng-repeat="chore in data.choreInfo">
           <li>
-            <p><strong>Chore:</strong> {{chore.choreName}}</p>
-            <p><strong>Notes:</strong> {{chore.choreNotes}}</p>
+            <p ng-click="data.getChore()"><strong>Chore:</strong> {{chore.choreName}}</p>
+            <p ng-click="data.getChore()"><strong>Notes:</strong> {{chore.choreNotes}}</p>
             <hr>
           </li>
         </ul>
       </div>
-      <button class="choreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
+      <button class="addChoreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
+      <button class="addChoreButton" type="button" name="button" ng-click="data.editChildChore()" ng-show="data.showEditChoreButton === true"> Edit Chore </button>
+    </div>
+    <div class="list" ng-show="data.showEditChildChore === true">
+      <label class="choreDetailsName item item-input">
+        <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.chore.name">
+      </label>
+      <label class="choreDetailsNotes item item-input">
+        <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.choreNotes}}" ng-model="data.chore.notes">
+      </label>
+      <button class="submitChoreButton" type="button" name="button" ng-click="data.submitChildChore(data.chore)">Edit Chore</button>
     </div>
     <div class="list" ng-show="data.showAddChildChore === true">
       <label class="choreDetailsName item item-input">
@@ -27,13 +37,14 @@
       <div class="choreList">
         <ol ng-repeat="reward in data.rewardInfo">
           <li>
-            <p><strong>Reward:</strong> {{reward.rewardName}}</p>
-            <p><strong>Notes:</strong> {{reward.rewardNotes}}</p>
+            <p ng-click="data.getKey()"><strong>Reward:</strong> {{reward.rewardName}}</p>
+            <p ng-click="data.getKey()"><strong>Notes:</strong> {{reward.rewardNotes}}</p>
             <hr>
           </li>
         </ol>
       </div>
       <button class="addRewardButton" type="button" name="button" ng-click="data.addChildReward()" ng-show="data.showAddRewardButton === true"> Add Reward </button>
+      <button class="addRewardButton" type="button" name="button" ng-click="data.test()" ng-show="data.showAddRewardButton === true"> Edit Reward </button>
     </div>
     <div class="list" ng-show="data.showAddChildReward === true">
       <label class="choreDetailsName item item-input">

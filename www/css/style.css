@@ -109,9 +109,13 @@ a{
 .choreFooterLogoutButton{
   margin-left: 23%;
   font-size: 35px;
+  color: white;
 }
 
 /*Specific to parentChildShow.html*/
+li:active{
+  color: red;
+}
 .parentChildShowFooterHome{
   color: white;
   margin-left: 24%;
@@ -150,11 +154,11 @@ a{
   text-align: center;
   height: 90px
 }
-.choreButton{
+.addChoreButton{
   background-color: gray;
   color: black;
-  width: 40%;
-  font-size: 25px;
+  width: 35%;
+  font-size: 20px;
   border-radius: 55px;
   margin-bottom: 5%;
 }
@@ -175,8 +179,8 @@ a{
 .addRewardButton{
   background-color: gray;
   color: black;
-  width: 45%;
-  font-size: 25px;
+  width: 40%;
+  font-size: 20px;
   border-radius: 55px;
 }
 .parentShowTitle{

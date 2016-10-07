@@ -65,6 +65,8 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   $scope.data.showChildChores = true;
   $scope.data.showAddChoreButton = true;
   $scope.data.showAddRewardButton = true;
+  $scope.data.showEditChildChore = false;
+  $scope.data.showEditChoreButton = true;
 
   $scope.data.addChildReward = function(){
     $scope.data.showAddChildReward = true;
@@ -72,6 +74,24 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
     $scope.data.showChildChores = false;
     $scope.data.showAddRewardButton = false;
   };
+
+  $scope.data.getChore = function(){
+    for (var key in this.choreInfo) {
+      $scope.data.editChoreInfo = this.choreInfo[key];
+    }
+  }
+
+  $scope.data.editChildChore = function(){
+    $scope.data.showEditChildChore = true;
+    $scope.data.showChildRewards = false;
+    $scope.data.showEditChoreButton = false;
+    $scope.data.showAddChoreButton = false;
+    $scope.data.showChildChores = false;
+  }
+
+  $scope.data.test = function(){
+    console.log($scope.data.key);
+  }
 
   $scope.data.submitChildChore = function(chore){
     $scope.data.showAddChoreButton = true;
@@ -84,6 +104,14 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       for (var id in data) {
         if (childUID === data[id].id) {
           ref.child(parentID).child('children').child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes});
+        }
+      }
+    })
+    ref.once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (childUID === data[id].id) {
+          ref.child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes});
           $state.go("parentShowChild");
         }
       }
@@ -102,6 +130,14 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       for (var id in data) {
         if (childUID === data[id].id) {
           ref.child(parentID).child('children').child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes});
+        }
+      }
+    })
+    ref.once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (childUID === data[id].id) {
+          ref.child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes});
           $state.go("parentShowChild");
         }
       }
@@ -113,6 +149,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   }
 
   var id = $scope.data.currentUserId;
+
   $scope.data.registerChild = function(child){
     $scope.data.showChildRegistration = false;
     firebase.auth().createUserWithEmailAndPassword(child.username, child.password).then(function(returnData){
@@ -122,7 +159,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
         let data = snapshot.val();
         for (var id in data) {
           if (ParentUid === data[id].id) {
-            return ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[]})
+            ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[]})
           }
         }
       });

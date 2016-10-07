@@ -11,6 +11,15 @@ angular.module('capstone').controller('childCtrl', function($scope, $rootScope, 
       }
     }
   })
+  ref.on("value", function(snapshot) {
+    let data = snapshot.val();
+    for (var id in data) {
+      if (uid === data[id].id) {
+        $scope.data.childChores = data[id].chores;
+        $scope.data.childRewards = data[id].rewards;
+      }
+    }
+  })
   $scope.data.logout = function(){
     firebase.auth().signOut().then(function() {
       console.log("user signed out");

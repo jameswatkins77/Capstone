@@ -1,0 +1,12 @@
+<ion-view view-title="hello">
+  <ion-content class="content padding-top">
+    <button class="" ng-click="data.test()" footer button button-clear>Edit</button>
+    <button class="" ng-click="data.test()" footer button button-clear>Delete</button>
+  </ion-content>
+  <div class="bar bar-footer bar-dark footerLogout">
+    <button ng-click="data.goParentHome()" class="parentChildShowFooterHome" footer button button-clear>Home</button>
+    <i class="iconSize icon ion-ios-home" ng-click="data.goParentHome()"></i>
+    <button ng-click="data.logout(data.user)" class="parentChildShowFooterLogout" footer button button-clear>Logout</button>
+    <i class="iconSize icon ion-ios-close-outline" ng-click="data.logout(data.user)"></i>
+  </div>
+</ion-view>
