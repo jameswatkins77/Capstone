@@ -6,6 +6,7 @@
           <ul ng-repeat="chore in data.choreInfo">
             <li>
               <p ng-click="data.editChore(chore)"><strong>Chore:</strong> {{chore.choreName}}</p>
+              <p ng-click="data.editChore(chore)"><strong>Points:</strong> {{chore.chorePoints}}</p>
               <p ng-click="data.editChore(chore)"><strong>Notes:</strong> {{chore.choreNotes}}</p>
               <hr>
             </li>
@@ -17,6 +18,9 @@
         <label class="choreDetailsName item item-input">
           <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.editChores.choreName">
         </label>
+        <label class="choreDetailsName item item-input">
+          <input type="number" name="name" value="" placeholder="{{data.editChoreInfo.chorePoints}}" ng-model="data.editChores.chorePoints">
+        </label>
         <label class="choreDetailsNotes item item-input">
           <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.choreNotes}}" ng-model="data.editChores.choreNotes">
         </label>
@@ -26,6 +30,9 @@
     <div class="list" ng-show="data.showAddChildChore === true">
       <label class="choreDetailsName item item-input">
         <input type="text" name="name" value="" placeholder="Chore Name" ng-model="data.chore.name">
+      </label>
+      <label class="choreDetailsName item item-input">
+        <input type="number" name="name" value="" placeholder="Chore Point Value" ng-model="data.chore.points">
       </label>
       <label class="choreDetailsNotes item item-input">
         <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="Chore Notes" ng-model="data.chore.notes">

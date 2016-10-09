@@ -257,7 +257,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(parentID).child('children').child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes});
+          ref.child(parentID).child('children').child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes, chorePoints:chore.points, status:"incomplete"});
         }
       }
     })
@@ -265,7 +265,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes});
+          ref.child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes, chorePoints:chore.points, status:"incomplete"});
           $state.go("parentShowChild");
         }
       }
@@ -283,7 +283,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(parentID).child('children').child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes});
+          ref.child(parentID).child('children').child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes, status:"not received"});
         }
       }
     })
@@ -291,7 +291,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes});
+          ref.child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes, status:"not received"});
           $state.go("parentShowChild");
         }
       }
