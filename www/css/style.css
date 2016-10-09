@@ -116,6 +116,25 @@ a{
 li:active{
   color: red;
 }
+.submitEditedChoreButton{
+  background-color: gray;
+  color: black;
+  width: 55%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-left: 9%;
+  margin-right: 10%;
+}
+.deleteChoreButton{
+  background-color: gray;
+  color: black;
+  width: 40%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-left: 9%;
+  margin-right: 10%;
+  margin-top: 3%;
+}
 .parentChildShowFooterHome{
   color: white;
   margin-left: 24%;
@@ -182,6 +201,14 @@ li:active{
   width: 40%;
   font-size: 20px;
   border-radius: 55px;
+}
+.deleteChildButton{
+  background-color: gray;
+  color: black;
+  width: 40%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-top: 2%;
 }
 .parentShowTitle{
   color: white;

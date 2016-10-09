@@ -43,11 +43,6 @@ angular.module('capstone', ['ionic','firebase','ngStorage','services'])
      templateUrl: 'templates/parents/children/show.html',
      controller: 'parentCtrl'
    })
-   .state('parentEditChore', {
-     url: '/parent/children/edit/',
-     templateUrl: 'templates/parents/children/editChore.html',
-     controller: 'parentCtrl'
-   })
  $urlRouterProvider.otherwise("/splash");
 })
 

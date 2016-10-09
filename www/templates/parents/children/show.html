@@ -1,28 +1,28 @@
 <ion-view view-title="hello">
   <ion-content class="content padding-top">
-    <div class="" ng-show="data.showChildChores === true">
-      <h2 class="parentShowTitle">Chore List:</h2>
-      <div class="choreList">
-        <ul ng-repeat="chore in data.choreInfo">
-          <li>
-            <p ng-click="data.getChore()"><strong>Chore:</strong> {{chore.choreName}}</p>
-            <p ng-click="data.getChore()"><strong>Notes:</strong> {{chore.choreNotes}}</p>
-            <hr>
-          </li>
-        </ul>
+      <div class="" ng-show="data.showChildChores === true">
+        <h2 class="parentShowTitle">Chore List:</h2>
+        <div class="choreList">
+          <ul ng-repeat="chore in data.choreInfo">
+            <li>
+              <p ng-click="data.editChore(chore)"><strong>Chore:</strong> {{chore.choreName}}</p>
+              <p ng-click="data.editChore(chore)"><strong>Notes:</strong> {{chore.choreNotes}}</p>
+              <hr>
+            </li>
+          </ul>
+        </div>
+        <button class="addChoreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
       </div>
-      <button class="addChoreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
-      <button class="addChoreButton" type="button" name="button" ng-click="data.editChildChore()" ng-show="data.showEditChoreButton === true"> Edit Chore </button>
-    </div>
-    <div class="list" ng-show="data.showEditChildChore === true">
-      <label class="choreDetailsName item item-input">
-        <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.chore.name">
-      </label>
-      <label class="choreDetailsNotes item item-input">
-        <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.choreNotes}}" ng-model="data.chore.notes">
-      </label>
-      <button class="submitChoreButton" type="button" name="button" ng-click="data.submitChildChore(data.chore)">Edit Chore</button>
-    </div>
+      <div class="list" ng-show="data.showEditChildChore === true">
+        <label class="choreDetailsName item item-input">
+          <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.editChores.choreName">
+        </label>
+        <label class="choreDetailsNotes item item-input">
+          <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.choreNotes}}" ng-model="data.editChores.choreNotes">
+        </label>
+        <button class="submitEditedChoreButton" type="button" name="button" ng-click="data.submitEditChildChore(data.editChoreInfo, data.editChores)">Submit Edited Chore</button>
+        <button class="deleteChoreButton" type="button" name="button" ng-click="data.deleteChildChore(data.editChoreInfo)">Delete Chore</button>
+      </div>
     <div class="list" ng-show="data.showAddChildChore === true">
       <label class="choreDetailsName item item-input">
         <input type="text" name="name" value="" placeholder="Chore Name" ng-model="data.chore.name">
@@ -37,15 +37,25 @@
       <div class="choreList">
         <ol ng-repeat="reward in data.rewardInfo">
           <li>
-            <p ng-click="data.getKey()"><strong>Reward:</strong> {{reward.rewardName}}</p>
-            <p ng-click="data.getKey()"><strong>Notes:</strong> {{reward.rewardNotes}}</p>
+            <p ng-click="data.editReward(reward)"><strong>Reward:</strong> {{reward.rewardName}}</p>
+            <p ng-click="data.editReward(reward)"><strong>Notes:</strong> {{reward.rewardNotes}}</p>
             <hr>
           </li>
         </ol>
       </div>
       <button class="addRewardButton" type="button" name="button" ng-click="data.addChildReward()" ng-show="data.showAddRewardButton === true"> Add Reward </button>
-      <button class="addRewardButton" type="button" name="button" ng-click="data.test()" ng-show="data.showAddRewardButton === true"> Edit Reward </button>
     </div>
+    <div class="list" ng-show="data.showEditChildReward === true">
+      <label class="choreDetailsName item item-input">
+        <input type="text" name="name" value="" placeholder="{{data.editRewardInfo.rewardName}}" ng-model="data.editReward.rewardName">
+      </label>
+      <label class="choreDetailsNotes item item-input">
+        <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editRewardInfo.rewardNotes}}" ng-model="data.editReward.rewardNotes">
+      </label>
+      <button class="submitEditedChoreButton" type="button" name="button" ng-click="data.submitEditChildReward(data.editRewardInfo, data.editReward)">Submit Edited Reward</button>
+      <button class="deleteChoreButton" type="button" name="button" ng-click="data.deleteChildReward(data.editRewardInfo)">Delete Reward</button>
+    </div>
+    <button class="deleteChildButton" type="button" name="button" ng-click="data.deleteChild()" ng-show="data.showDeleteChildButton === true"> Delete Child </button>
     <div class="list" ng-show="data.showAddChildReward === true">
       <label class="choreDetailsName item item-input">
         <input type="text" name="name" value="" placeholder="Reward Name" ng-model="data.reward.name">
