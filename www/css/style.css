@@ -96,6 +96,7 @@ a{
 /*Specific to childHome.html*/
 .childName{
   margin-bottom: 15%;
+  color: white;
 }
 .footerLogout{
   font-size: 35px;
@@ -104,14 +105,43 @@ a{
   margin-left: 35%;
   font-size: 35px;
 }
-
+.childShowInfo{
+  color: white;
+  margin-bottom: 10%;
+}
+.childShowFooter{
+  color: white;
+  font-size: 20px !important;
+}
 /*Specific to childChores.html*/
 .choreFooterLogoutButton{
   margin-left: 23%;
   font-size: 35px;
   color: white;
 }
-
+.submitCompletedChoreButton{
+  background-color: gray;
+  color: black;
+  width: 80%;
+  font-size: 20px;
+  border-radius: 55px;
+}
+.choreCompleteSubmitTextAreaOutside{
+  height: 300px;
+  width: 80%;
+  text-align: center;
+  padding: 0;
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+.choreCompleteSubmitTextAreaInside{
+  height: 300px;
+  width: 100%;
+  text-align: center;
+}
+.submitChorePage{
+  color: white;
+}
 /*Specific to parentChildShow.html*/
 li:active{
   color: red;
@@ -124,6 +154,16 @@ li:active{
   border-radius: 55px;
   margin-left: 9%;
   margin-right: 10%;
+}
+.submitCompletedChoreButton{
+  background-color: gray;
+  color: black;
+  width: 55%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-left: 9%;
+  margin-right: 10%;
+  margin-top: 3.5%;
 }
 .deleteChoreButton{
   background-color: gray;

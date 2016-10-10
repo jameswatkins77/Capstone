@@ -1,16 +1,27 @@
 <ion-view view-title="hello">
         <ion-content class="content padding-top">
           <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
-          <h2 class="parentShowTitle">Chore List:</h2>
+          <h2 class="parentShowTitle" ng-show="data.showChoreListTitle === true">Chore List:</h2>
           <div class="choreList" ng-show="data.showChoreList === true">
             <ul ng-repeat="chore in data.childChores">
               <li>
                 <p ng-click="data.goChoreComplete(chore)"><strong>Chore:</strong> {{chore.choreName}}</p>
                 <p ng-click="data.goChoreComplete(chore)"><strong>Notes:</strong> {{chore.choreNotes}}</p>
                 <p ng-click="data.goChoreComplete(chore)"><strong>Points:</strong> {{chore.chorePoints}}</p>
+                <p ng-click="data.goChoreComplete(chore)"><strong>Status:</strong> {{chore.status}}</p>
                 <hr>
               </li>
             </ul>
+          </div>
+          <div class="" ng-show="data.submitCompleteChore === true">
+            <h2 class="submitChorePage">Chore to submit:</h2>
+            <h3 class="submitChorePage">{{data.choreInfo.choreName}}, {{data.choreInfo.chorePoints}} points</h3>
+            <div class="list">
+              <label class="choreCompleteSubmitTextAreaOutside item item-input">
+                <input type="textarea" class="choreCompleteSubmitTextAreaInside" name="name" value="" placeholder="What did you do to complete this chore?" ng-model="data.completeChoreInfo">
+              </label>
+              <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.submitComplete(data.choreInfo.choreName, data.completeChoreInfo)">Submit for Parent Approval</button>
+            </div>
           </div>
         </ion-content>
         <div class="bar bar-footer bar-dark footerLogout">

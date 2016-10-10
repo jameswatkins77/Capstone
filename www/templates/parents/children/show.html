@@ -8,6 +8,8 @@
               <p ng-click="data.editChore(chore)"><strong>Chore:</strong> {{chore.choreName}}</p>
               <p ng-click="data.editChore(chore)"><strong>Points:</strong> {{chore.chorePoints}}</p>
               <p ng-click="data.editChore(chore)"><strong>Notes:</strong> {{chore.choreNotes}}</p>
+              <p ng-click="data.editChore(chore)"><strong>Status:</strong> {{chore.status}}</p>
+              <p ng-click="data.editChore(chore)"><strong>Info:</strong> {{chore.info}}</p>
               <hr>
             </li>
           </ul>
@@ -15,18 +17,22 @@
         <button class="addChoreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
       </div>
     <div class="list" ng-show="data.showEditChildChore === true">
-        <label class="choreDetailsName item item-input">
-          <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.editChores.choreName">
-        </label>
-        <label class="choreDetailsName item item-input">
-          <input type="number" name="name" value="" placeholder="{{data.editChoreInfo.chorePoints}}" ng-model="data.editChores.chorePoints">
-        </label>
-        <label class="choreDetailsNotes item item-input">
-          <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.choreNotes}}" ng-model="data.editChores.choreNotes">
-        </label>
-        <button class="submitEditedChoreButton" type="button" name="button" ng-click="data.submitEditChildChore(data.editChoreInfo, data.editChores)">Submit Edited Chore</button>
-        <button class="deleteChoreButton" type="button" name="button" ng-click="data.deleteChildChore(data.editChoreInfo)">Delete Chore</button>
-      </div>
+      <label class="choreDetailsName item item-input">
+        <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.editChores.choreName">
+      </label>
+      <label class="choreDetailsName item item-input">
+        <input type="number" name="name" value="" placeholder="{{data.editChoreInfo.chorePoints}}" ng-model="data.editChores.chorePoints">
+      </label>
+      <label class="choreDetailsNotes item item-input">
+        <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.choreNotes}}" ng-model="data.editChores.choreNotes">
+      </label>
+      <label class="choreDetailsNotes item item-input">
+        <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editChoreInfo.info}}">
+      </label>
+      <button class="submitEditedChoreButton" type="button" name="button" ng-click="data.submitEditChildChore(data.editChoreInfo, data.editChores)">Submit Edited Chore</button>
+      <button class="deleteChoreButton" type="button" name="button" ng-click="data.deleteChildChore(data.editChoreInfo)">Delete Chore</button>
+      <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.confirmChildChoreComplete(data.editChoreInfo)">Confirm Completed</button>
+    </div>
     <div class="list" ng-show="data.showAddChildChore === true">
       <label class="choreDetailsName item item-input">
         <input type="text" name="name" value="" placeholder="Chore Name" ng-model="data.chore.name">

@@ -63,12 +63,12 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
     $scope.data.showChildRegistration = false;
     firebase.auth().createUserWithEmailAndPassword(child.username, child.password).then(function(returnData){
       var uid = firebase.auth().currentUser.uid;
-      firebase.database().ref().child('users').push({id:uid, name:child.name, type:'child', rewards:[], chores:[]});
       ref.once('value').then(function(snapshot) {
         let data = snapshot.val();
         for (var id in data) {
           if (ParentUid === data[id].id) {
-            ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[]})
+            firebase.database().ref().child('users').push({id:uid, name:child.name, type:'child', rewards:[], chores:[], points:0, parent:id});
+            ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[], points:0, parent:id})
           }
         }
       });
@@ -102,7 +102,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(parentID).child('children').child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes, chorePoints:chore.points, status:"incomplete"});
+          ref.child(parentID).child('children').child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes, chorePoints:chore.points, status:"incomplete", info:""});
         }
       }
     })
@@ -110,7 +110,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes, chorePoints:chore.points, status:"incomplete"});
+          ref.child(id).child('chores').push({choreName:chore.name, choreNotes:chore.notes, chorePoints:chore.points, status:"incomplete", info:""});
           $state.go("parentShowChild");
         }
       }
@@ -195,13 +195,74 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
           ref.child(id3).child('chores').once('value').then(function(snapshot4){
             let data4 = snapshot4.val();
             for (var id4 in data4) {
-              ref.child(bar).child('chores').child(id4).remove();
-            }
+              if (oldChore.choreName === data4[id4].choreName) {
+                ref.child(bar).child('chores').child(id4).remove();
+              }            }
           })
         }
       }
     })
   };
+
+  $scope.data.confirmChildChoreComplete = function(choreInfo){
+    var parentID = $scope.data.currentUserId;
+    var childUID = $stateParams.id;
+    ref.child(parentID).child('children').once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (childUID === data[id].id) {
+          var foo = id;
+          ref.child(parentID).child('children').child(foo).child('points').once('value').then(function(snapshot2){
+            let data2 = snapshot2.val();
+            var newTotal = choreInfo.chorePoints + data2;
+            $scope.data.newTotal = newTotal;
+            ref.child(parentID).child('children').child(foo).update({points:newTotal})
+            ref.once('value').then(function(snapshot3){
+              let data3 = snapshot3.val();
+              for (var id3 in data3) {
+                if (childUID === data3[id3].id) {
+                  var bar = id3;
+                  ref.child(id3).update({points:newTotal});
+                }
+              }
+            })
+          })
+        }
+      }
+    })
+    ref.child(parentID).child('children').once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (childUID === data[id].id) {
+          var foo = id;
+          ref.child(parentID).child('children').child(id).child('chores').once('value').then(function(snapshot2){
+            let data2 = snapshot2.val();
+            for (var id2 in data2) {
+              if (choreInfo.choreName === data2[id2].choreName) {
+                ref.child(parentID).child('children').child(foo).child('chores').child(id2).remove();
+              }
+            }
+          })
+        }
+      }
+    })
+    ref.once('value').then(function(snapshot3){
+      let data3 = snapshot3.val();
+      for (var id3 in data3) {
+        if (childUID === data3[id3].id) {
+          var bar = id3;
+          ref.child(id3).child('chores').once('value').then(function(snapshot4){
+            let data4 = snapshot4.val();
+            for (var id4 in data4) {
+              if (choreInfo.choreName === data4[id4].choreName) {
+                ref.child(bar).child('chores').child(id4).remove();
+              }
+            }
+          })
+        }
+      }
+    })
+  }
 
   $scope.data.addChildReward = function(){
     $scope.data.showAddChildReward = true;
