@@ -62,11 +62,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
               let data4 = snapshot4.val();
               for (var id3 in data4) {
                 if (completeName === data4[id3].choreName) {
-                  console.log("parent id: "+data2);
-                  console.log("child id: "+lob);
-                  console.log("chore id: "+id3);
-                  console.log("name from page: "+completeName);
-                  console.log("name from db: "+data4[id3].choreName);
+
                   ref.child(data2).child('children').child(lob).child('chores').child(id3).update({info:completeDescription, status:"completed"});
                 }
               }
@@ -75,6 +71,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
         }
       })
     })
+    alert("Your parent has been notified that you completed "+completeName+".")
   }
 
 });

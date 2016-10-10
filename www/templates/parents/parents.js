@@ -350,7 +350,6 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   };
 
   $scope.data.deleteChildReward = function(oldReward){
-    console.log("reward deleted");
     var parentID = $scope.data.currentUserId;
     var childUID = $stateParams.id;
     ref.child(parentID).child('children').once('value').then(function(snapshot){
