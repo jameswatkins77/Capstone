@@ -2,11 +2,12 @@
         <ion-content class="content padding-top">
           <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
           <h2 class="parentShowTitle">Chore List:</h2>
-          <div class="choreList">
+          <div class="choreList" ng-show="data.showChoreList === true">
             <ul ng-repeat="chore in data.childChores">
               <li>
-                <p><strong>Chore:</strong> {{chore.choreName}}</p>
-                <p><strong>Notes:</strong> {{chore.choreNotes}}</p>
+                <p ng-click="data.goChoreComplete(chore)"><strong>Chore:</strong> {{chore.choreName}}</p>
+                <p ng-click="data.goChoreComplete(chore)"><strong>Notes:</strong> {{chore.choreNotes}}</p>
+                <p ng-click="data.goChoreComplete(chore)"><strong>Points:</strong> {{chore.chorePoints}}</p>
                 <hr>
               </li>
             </ul>
