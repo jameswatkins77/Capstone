@@ -38,7 +38,6 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
 
   $scope.data.logout = function(){
     firebase.auth().signOut().then(function() {
-      console.log("user signed out");
       $state.go("login");
     }, function(error) {
       console.log("error logging out");

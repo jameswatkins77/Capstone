@@ -28,7 +28,6 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
 
   $scope.data.logout = function(){
     firebase.auth().signOut().then(function() {
-      console.log("user signed out");
       $state.go("login");
     }, function(error) {
       console.log("error logging out");
@@ -51,35 +50,48 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.submitPurchaseReward = function(reward){
     var childID = $scope.data.currentUserId;
     var childUID = $stateParams.id;
-    ref.child(childID).child('rewards').once('value').then(function(snapshot){
-      let data = snapshot.val();
-      for (var id in data) {
-        if (reward.rewardName === data[id].rewardName) {
-          ref.child(childID).child('rewards').child(id).update({status:"purchased"});
-        }
+    ref.child(childID).child('points').once('value').then(function(foo){
+      let bar = foo.val();
+      if (bar >= reward.rewardPoints) {
+        var diff = bar - reward.rewardPoints;
+        console.log("this is balance: "+bar);
+        console.log("this is reward cost: "+reward.rewardPoints);
+        console.log("this is remaining balance: "+diff);
+        ref.child(childID).child('rewards').once('value').then(function(snapshot){
+          let data = snapshot.val();
+          for (var id in data) {
+            if (reward.rewardName === data[id].rewardName) {
+              ref.child(childID).child('rewards').child(id).update({status:"purchased"});
+              ref.child(childID).update({points:diff});
+            }
+          }
+        })
+        ref.child(childID).child('parent').once('value').then(function(snapshot2){
+          let data2 = snapshot2.val();
+          ref.child(data2).child('children').once('value').then(function(snapshot3){
+            let data3 = snapshot3.val();
+            for (var id2 in data3) {
+              if (childUID === data3[id2].id) {
+                var lob = id2;
+                ref.child(data2).child('children').child(id2).child('rewards').once('value').then(function(snapshot4){
+                  let data4 = snapshot4.val();
+                  for (var id3 in data4) {
+                    if (reward.rewardName === data4[id3].rewardName) {
+                      ref.child(data2).child('children').child(lob).child('rewards').child(id3).update({status:"purchased"});
+                      ref.child(data2).child('children').child(lob).update({points:diff});
+                    }
+                  }
+                })
+              }
+            }
+          })
+        })
+        alert("Your parents has been notified that "+reward.rewardName+" has been purchased.")
+      } else {
+        alert("You do not have enough points to purchase this reward.")
       }
     })
-    ref.child(childID).child('parent').once('value').then(function(snapshot2){
-      let data2 = snapshot2.val();
-      ref.child(data2).child('children').once('value').then(function(snapshot3){
-        let data3 = snapshot3.val();
-        for (var id2 in data3) {
-          if (childUID === data3[id2].id) {
-            var lob = id2;
-            ref.child(data2).child('children').child(id2).child('rewards').once('value').then(function(snapshot4){
-              let data4 = snapshot4.val();
-              for (var id3 in data4) {
-                if (reward.rewardName === data4[id3].rewardName) {
-                  ref.child(data2).child('children').child(lob).child('rewards').child(id3).update({status:"purchased"});
-                }
-              }
-            })
-          }
-        }
-      })
-    })
-    alert("Your parents has been notified that "+reward.rewardName+" has been purchased.")
-  }
+    }
 
   $scope.data.submitComplete = function(completeName, completeDescription){
     var childID = $scope.data.currentUserId;
@@ -113,5 +125,4 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
     })
     alert("Your parent has been notified that you completed "+completeName+".")
   }
-
 });
