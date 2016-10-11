@@ -10,7 +10,6 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
     ref.child(response).child('children').once("value").then(function(snapshot) {
       let data = snapshot.val();
       $scope.data.info = data;
-      console.log($scope.data.info);
     })
     var childUID = $stateParams.id;
     ref.child(response).child('children').once('value').then(function(snapshot){
@@ -151,9 +150,9 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
             let data2 = snapshot2.val();
             for (var id2 in data2) {
               if (oldChore.choreName === data2[id2].choreName) {
-                ref.child(parentID).child('children').child(foo).child('chores').child(id2).update({choreName:chore.choreName});
-                ref.child(parentID).child('children').child(foo).child('chores').child(id2).update({choreNotes:chore.choreNotes});
-                ref.child(parentID).child('children').child(foo).child('chores').child(id2).update({chorePoints:chore.chorePoints});
+                ref.child(parentID).child('children').child(foo).child('chores').child(id2).update({choreName:chore.choreName})
+                ref.child(parentID).child('children').child(foo).child('chores').child(id2).update({choreNotes:chore.choreNotes})
+                ref.child(parentID).child('children').child(foo).child('chores').child(id2).update({chorePoints:chore.chorePoints})
               }
             }
           })
@@ -169,15 +168,30 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
             let data4 = snapshot4.val();
             for (var id4 in data4) {
               if (oldChore.choreName === data4[id4].choreName) {
-                ref.child(bar).child('chores').child(id4).update({choreName:chore.choreName});
-                ref.child(bar).child('chores').child(id4).update({choreNotes:chore.choreNotes});
-                ref.child(bar).child('chores').child(id4).update({chorePoints:chore.chorePoints});
+                ref.child(bar).child('chores').child(id4).update({choreName:chore.choreName})
+                ref.child(bar).child('chores').child(id4).update({choreNotes:chore.choreNotes})
+                ref.child(bar).child('chores').child(id4).update({chorePoints:chore.chorePoints})
+                .then(function(){
+                  ref.child(parentID).child('children').once('value').then(function(snapshot){
+                    let data = snapshot.val();
+                    for (var id in data) {
+                      if (childUID === data[id].id) {
+                        ref.child(parentID).child('children').child(id).child('chores').once('value').then(function(snapshot2){
+                          let data2 = snapshot2.val();
+                          $scope.data.choreInfo = data2;
+                          $scope.$apply();
+                        })
+                      }
+                    }
+                  })
+                })
               }
             }
           })
         }
       }
     })
+    $state.go("parentShowChild");
   };
 
   $scope.data.deleteChildChore = function(oldChore){
@@ -426,7 +440,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(parentID).child('children').child(id).remove();
+          ref.child(parentID).child('children').child(id).remove()
         }
       }
     })
@@ -434,7 +448,14 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data3 = snapshot3.val();
       for (var id3 in data3) {
         if (childUID === data3[id3].id) {
-          ref.child(id3).remove();
+          ref.child(id3).remove()
+          .then(function(){
+            ref.child(parentID).child('children').once("value").then(function(snapshot) {
+              let data = snapshot.val();
+              $scope.data.info = data;
+              $scope.$apply();
+            })
+          })
         }
       }
     })
