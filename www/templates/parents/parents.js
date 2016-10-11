@@ -3,12 +3,14 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   var ParentUid = firebase.auth().currentUser.uid;
   var ref = firebase.database().ref().child('users');
   $scope.data = {};
+  $scope.data.info;
 
   user.getCurrentUserId().then(function(response){
     $scope.data.currentUserId = response;
     ref.child(response).child('children').once("value").then(function(snapshot) {
       let data = snapshot.val();
       $scope.data.info = data;
+      console.log($scope.data.info);
     })
     var childUID = $stateParams.id;
     ref.child(response).child('children').once('value').then(function(snapshot){
@@ -36,6 +38,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   });
   var id = $scope.data.currentUserId;
 
+
   $scope.data.logout = function(){
     firebase.auth().signOut().then(function() {
       $state.go("login");
@@ -61,6 +64,8 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
 
   $scope.data.registerChild = function(child){
     $scope.data.showChildRegistration = false;
+    $scope.data.showChildren = true;
+    var parentID = $scope.data.currentUserId;
     firebase.auth().createUserWithEmailAndPassword(child.username, child.password).then(function(returnData){
       var uid = firebase.auth().currentUser.uid;
       ref.once('value').then(function(snapshot) {
@@ -69,6 +74,13 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
           if (ParentUid === data[id].id) {
             firebase.database().ref().child('users').push({id:uid, name:child.name, type:'child', rewards:[], chores:[], points:0, parent:id});
             ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[], points:0, parent:id})
+            .then(function(){
+              ref.child(parentID).child('children').once("value").then(function(snapshot) {
+                let data = snapshot.val();
+                $scope.data.info = data;
+                $scope.$apply();
+              })
+            })
           }
         }
       });
@@ -78,7 +90,6 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       console.log(errorCode);
       console.log(errorMessage);
     });
-    $state.go("parentHome");
   }
 
   $scope.data.addChildFromParentHome = function(){
