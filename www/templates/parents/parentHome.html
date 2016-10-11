@@ -2,7 +2,7 @@
         <ion-content class="content padding-top">
           <div class="loginContainer" ng-show="data.showChildren === true">
             <div class="" ng-repeat="name in data.info">
-              <button class="showChildButton"><a href="#/parent/children/show/{{name.id}}">{{name.name}}</a></button>
+              <button class="showChildButton"><a href="#/parent/children/show/{{name.id}}" target="_self">{{name.name}}</a></button>
             </div>
             <button class="addChildButton" type="button" name="button" ng-hide="data.showChildRegistration === true" ng-click="data.addChildFromParentHome()"> Add Child </button>
           </div>
