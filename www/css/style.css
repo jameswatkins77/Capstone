@@ -23,8 +23,8 @@ a{
 }
 .splashImage{
   width: 375px;
-  height: 350px;
-  margin-top: 25%;
+  margin-top: 10%;
+  margin-bottom: 45%;
 }
 
 /*Specific to login.html*/
@@ -56,7 +56,7 @@ a{
   border-radius: 55px;
 }
 .loginContainer{
-  margin-top: 10%;
+  margin-top: 30%;
   margin-bottom: 10%;
 }
 
