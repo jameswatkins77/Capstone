@@ -54,6 +54,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   $scope.data.showEditChoreButton = true;
   $scope.data.showDeleteChildButton = true;
   $scope.data.showAddChildChore = false;
+  $scope.data.showChildren = true;
 
   $scope.data.goParentHome = function(){
     $state.go("parentHome");
@@ -83,6 +84,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
 
   $scope.data.addChildFromParentHome = function(){
     $scope.data.showChildRegistration = true;
+    $scope.data.showChildren = false;
   }
 
   $scope.data.addChildChore = function(){

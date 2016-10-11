@@ -45,7 +45,7 @@ a{
 }
 .loginRegister{
   color: white;
-  text-decoration: none;
+  text-decoration: underline;;
 }
 .loginButton{
   background-color: gray;
@@ -85,7 +85,7 @@ a{
 }
 .item-input{
   border-radius: 5px;
-  margin-bottom: 1%;
+  margin-bottom: 3%;
   margin-left: 20%;
 }
 .repeatPassword{
@@ -112,6 +112,11 @@ a{
 .childShowFooter{
   color: white;
   font-size: 20px !important;
+}
+.childHomeImage{
+  width: 85%;
+  margin-bottom: 10%;
+  margin-top: 5%;
 }
 /*Specific to childChores.html*/
 .choreFooterLogoutButton{
@@ -188,13 +193,18 @@ li:focus{
 .choreList{
   background-color: white;
   width: 80%;
-  height: 200px;
+  height: 450px;
   font-size: 20px;
   padding: 2%;
   margin-left: 10%;
   margin-bottom: 5%;
   border-radius: 10px;
   overflow: scroll;
+}
+.childShowTitle{
+  color: white;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
 }
 .choreDetailsName{
   width: 80%;
@@ -243,12 +253,12 @@ li:focus{
   border-radius: 55px;
 }
 .deleteChildButton{
-  background-color: gray;
+  background-color: red;
   color: black;
   width: 40%;
   font-size: 20px;
   border-radius: 55px;
-  margin-top: 2%;
+  margin-top: 5%;
 }
 .parentShowTitle{
   color: white;

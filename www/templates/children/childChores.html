@@ -1,7 +1,6 @@
 <ion-view view-title="hello">
         <ion-content class="content padding-top">
-          <img class="loginImage" src="/img/choreScoreInitials.png" alt="" />
-          <h2 class="parentShowTitle" ng-show="data.showChoreListTitle === true">Chore List:</h2>
+          <h2 class="childShowTitle" ng-show="data.showChoreListTitle === true">Chore List:</h2>
           <div class="choreList" ng-show="data.showChoreList === true">
             <ul ng-repeat="chore in data.childChores">
               <li>

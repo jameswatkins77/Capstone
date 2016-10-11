@@ -1,6 +1,6 @@
 <ion-view view-title="hello">
         <ion-content class="content padding-top">
-          <div class="loginContainer">
+          <div class="loginContainer" ng-show="data.showChildren === true">
             <div class="" ng-repeat="name in data.info">
               <button class="showChildButton"><a href="#/parent/children/show/{{name.id}}">{{name.name}}</a></button>
             </div>
