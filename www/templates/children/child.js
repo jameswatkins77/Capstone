@@ -7,6 +7,8 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.showChoreList = true;
   $scope.data.submitCompleteChore = false;
   $scope.data.showChoreListTitle = true;
+  $scope.data.purchaseReward = false;
+  $scope.data.showRewards = true;
 
   ref.on("value", function(snapshot) {
     let data = snapshot.val();
@@ -40,6 +42,45 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
     $scope.data.showChoreListTitle = false;
   }
 
+  $scope.data.goRewardPurchase = function(reward){
+    $scope.data.rewardInfo = reward;
+    $scope.data.purchaseReward = true;
+    $scope.data.showRewards = false;
+  }
+
+  $scope.data.submitPurchaseReward = function(reward){
+    var childID = $scope.data.currentUserId;
+    var childUID = $stateParams.id;
+    ref.child(childID).child('rewards').once('value').then(function(snapshot){
+      let data = snapshot.val();
+      for (var id in data) {
+        if (reward.rewardName === data[id].rewardName) {
+          ref.child(childID).child('rewards').child(id).update({status:"purchased"});
+        }
+      }
+    })
+    ref.child(childID).child('parent').once('value').then(function(snapshot2){
+      let data2 = snapshot2.val();
+      ref.child(data2).child('children').once('value').then(function(snapshot3){
+        let data3 = snapshot3.val();
+        for (var id2 in data3) {
+          if (childUID === data3[id2].id) {
+            var lob = id2;
+            ref.child(data2).child('children').child(id2).child('rewards').once('value').then(function(snapshot4){
+              let data4 = snapshot4.val();
+              for (var id3 in data4) {
+                if (reward.rewardName === data4[id3].rewardName) {
+                  ref.child(data2).child('children').child(lob).child('rewards').child(id3).update({status:"purchased"});
+                }
+              }
+            })
+          }
+        }
+      })
+    })
+    alert("Your parents has been notified that "+reward.rewardName+" has been purchased.")
+  }
+
   $scope.data.submitComplete = function(completeName, completeDescription){
     var childID = $scope.data.currentUserId;
     var childUID = $stateParams.id;
@@ -62,7 +103,6 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
               let data4 = snapshot4.val();
               for (var id3 in data4) {
                 if (completeName === data4[id3].choreName) {
-
                   ref.child(data2).child('children').child(lob).child('chores').child(id3).update({info:completeDescription, status:"completed"});
                 }
               }

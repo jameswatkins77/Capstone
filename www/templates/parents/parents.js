@@ -285,7 +285,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(parentID).child('children').child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes, rewardPoints:reward.points, status:"not received"});
+          ref.child(parentID).child('children').child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes, rewardPoints:reward.points, status:"not purchased"});
         }
       }
     })
@@ -293,7 +293,7 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       let data = snapshot.val();
       for (var id in data) {
         if (childUID === data[id].id) {
-          ref.child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes, rewardPoints:reward.points, status:"not received"});
+          ref.child(id).child('rewards').push({rewardName:reward.name, rewardNotes:reward.notes, rewardPoints:reward.points, status:"not purchased"});
           $state.go("parentShowChild");
         }
       }
@@ -378,13 +378,36 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
           ref.child(id3).child('rewards').once('value').then(function(snapshot4){
             let data4 = snapshot4.val();
             for (var id4 in data4) {
+              if (oldReward.rewardName === data4[id4].rewardName) {
                 ref.child(bar).child('rewards').child(id4).remove();
+              }
             }
           })
         }
       }
     })
   };
+
+  $scope.data.deletePurchasedChildReward = function(oldReward){
+    var parentID = $scope.data.currentUserId;
+    var childUID = $stateParams.id;
+    ref.once('value').then(function(snapshot3){
+      let data3 = snapshot3.val();
+      for (var id3 in data3) {
+        if (childUID === data3[id3].id) {
+          var bar = id3;
+          ref.child(id3).child('rewards').once('value').then(function(snapshot4){
+            let data4 = snapshot4.val();
+            for (var id4 in data4) {
+              if (oldReward.rewardName === data4[id4].rewardName) {
+                ref.child(bar).child('rewards').child(id4).remove();
+              }
+            }
+          })
+        }
+      }
+    })
+  }
 
   $scope.data.deleteChild = function(){
     var parentID = $scope.data.currentUserId;

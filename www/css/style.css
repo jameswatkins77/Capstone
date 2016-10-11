@@ -52,11 +52,11 @@ a{
   color: black;
   width: 80%;
   font-size: 35px;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   border-radius: 55px;
 }
 .loginContainer{
-  margin-top: 30%;
+  margin-top: 15%;
   margin-bottom: 10%;
 }
 
@@ -95,7 +95,6 @@ a{
 
 /*Specific to childHome.html*/
 .childName{
-  margin-bottom: 15%;
   color: white;
 }
 .footerLogout{
@@ -115,14 +114,19 @@ a{
 }
 .childHomeImage{
   width: 85%;
-  margin-bottom: 10%;
+  margin-bottom: 7%;
   margin-top: 5%;
 }
 /*Specific to childChores.html*/
 .choreFooterLogoutButton{
-  margin-left: 23%;
+  margin-left: 17%;
   font-size: 35px;
   color: white;
+}
+.footerReward{
+  font-size: 35px;
+  color: white;
+  margin-left: 15%;
 }
 .submitCompletedChoreButton{
   background-color: gray;
@@ -160,6 +164,36 @@ li:focus{
   margin-left: 9%;
   margin-right: 10%;
 }
+.submitCompletedRewardButton{
+  background-color: gray;
+  color: black;
+  width: 60%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-left: 9%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+}
+.submitDeleteRewardButton{
+  background-color: gray;
+  color: black;
+  width: 45%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-left: 9%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+}
+.submitConfirmPurchaseButton{
+  background-color: gray;
+  color: black;
+  width: 75%;
+  font-size: 20px;
+  border-radius: 55px;
+  margin-left: 9%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+}
 .submitCompletedChoreButton{
   background-color: gray;
   color: black;
@@ -182,18 +216,18 @@ li:focus{
 }
 .parentChildShowFooterHome{
   color: white;
-  margin-left: 24%;
+  margin-left: 20%;
   margin-right: 1%;
 }
 .parentChildShowFooterLogout{
   color: white;
   margin-right: 1%;
-  margin-left: 3%;
+  margin-left: 10%;
 }
 .choreList{
   background-color: white;
   width: 80%;
-  height: 450px;
+  height: 430px;
   font-size: 20px;
   padding: 2%;
   margin-left: 10%;
@@ -226,7 +260,7 @@ li:focus{
 .addChoreButton{
   background-color: gray;
   color: black;
-  width: 35%;
+  width: 130px;
   font-size: 20px;
   border-radius: 55px;
   margin-bottom: 5%;
@@ -234,28 +268,28 @@ li:focus{
 .submitChoreButton{
   background-color: gray;
   color: black;
-  width: 50%;
+  width: 200px;
   font-size: 25px;
   border-radius: 55px;
 }
 .submitRewardButton{
   background-color: gray;
   color: black;
-  width: 55%;
+  width: 220px;
   font-size: 25px;
   border-radius: 55px;
 }
 .addRewardButton{
   background-color: gray;
   color: black;
-  width: 40%;
+  width: 150px;
   font-size: 20px;
   border-radius: 55px;
 }
 .deleteChildButton{
   background-color: red;
   color: black;
-  width: 40%;
+  width: 140px;
   font-size: 20px;
   border-radius: 55px;
   margin-top: 5%;
@@ -267,7 +301,7 @@ li:focus{
 .addChildButton{
   background-color: gray;
   color: white;
-  width: 30%;
+  width: 130px;
   font-size: 20px;
   margin-bottom: 10%;
   border-radius: 55px;

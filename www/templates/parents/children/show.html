@@ -53,6 +53,7 @@
           <li>
             <p ng-click="data.editReward(reward)"><strong>Reward:</strong> {{reward.rewardName}}</p>
             <p ng-click="data.editReward(reward)"><strong>Points:</strong> {{reward.rewardPoints}}</p>
+            <p ng-click="data.editReward(reward)"><strong>Status:</strong> {{reward.status}}</p>
             <p ng-click="data.editReward(reward)"><strong>Notes:</strong> {{reward.rewardNotes}}</p>
             <i class="iconSize icon ion-ios-redo"></i>
             <hr>
@@ -71,8 +72,9 @@
       <label class="choreDetailsNotes item item-input">
         <input type="textarea" class="choreNotesTextArea" name="name" value="" placeholder="{{data.editRewardInfo.rewardNotes}}" ng-model="data.editReward.rewardNotes">
       </label>
-      <button class="submitEditedChoreButton" type="button" name="button" ng-click="data.submitEditChildReward(data.editRewardInfo, data.editReward)">Submit Edited Reward</button>
-      <button class="deleteChoreButton" type="button" name="button" ng-click="data.deleteChildReward(data.editRewardInfo)">Delete Reward</button>
+      <button class="submitCompletedRewardButton" type="button" name="button" ng-click="data.submitEditChildReward(data.editRewardInfo, data.editReward)">Submit Edited Reward</button>
+      <button class="submitDeleteRewardButton" type="button" name="button" ng-click="data.deleteChildReward(data.editRewardInfo)">Delete Reward</button>
+      <button class="submitConfirmPurchaseButton" type="button" name="button" ng-click="data.deletePurchasedChildReward(data.editRewardInfo)" ng-show="data.editRewardInfo.status === 'purchased'">Confirm Purchased Reward</button>
     </div>
     <button class="deleteChildButton" type="button" name="button" ng-click="data.deleteChild()" ng-show="data.showDeleteChildButton === true"> Delete Child </button>
     <div class="list" ng-show="data.showAddChildReward === true">
