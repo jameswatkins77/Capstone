@@ -1,6 +1,6 @@
 <ion-view view-title="hello">
         <ion-content class="content padding-top">
-          <h2 class="childShowTitle">Reward List:</h2>
+          <h2 class="childShowTitle" ng-show="data.showRewardsTitle === true">Reward List:</h2>
             <div class="choreList" ng-show="data.showRewards === true">
               <ul ng-repeat="reward in data.childRewards">
                 <li>
@@ -13,7 +13,8 @@
               </ul>
             </div>
             <div class="" ng-show="data.purchaseReward === true">
-              <h3 class="submitChorePage">Chore to Purchase: {{data.rewardInfo.rewardName}}</h3>
+              <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.backRewards()">Back to Rewards</button>
+              <h3 class="submitChorePage">Reward to Purchase: {{data.rewardInfo.rewardName}}</h3>
               <h3 class="submitChorePage">Point Cost: {{data.rewardInfo.rewardPoints}}</h3>
               <div class="list">
                 <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.submitPurchaseReward(data.rewardInfo)">Purchase Reward</button>

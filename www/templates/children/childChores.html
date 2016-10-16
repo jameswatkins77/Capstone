@@ -13,20 +13,21 @@
             </ul>
           </div>
           <div class="" ng-show="data.submitCompleteChore === true">
+            <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.backChores()">Back to Chores</button>
             <h2 class="submitChorePage">Chore to submit:</h2>
             <h3 class="submitChorePage">{{data.choreInfo.choreName}}, {{data.choreInfo.chorePoints}} points</h3>
             <div class="list">
               <label class="choreCompleteSubmitTextAreaOutside item item-input">
                 <input type="textarea" class="choreCompleteSubmitTextAreaInside" name="name" value="" placeholder="What did you do to complete this chore?" ng-model="data.completeChoreInfo">
               </label>
-              <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.submitComplete(data.choreInfo.choreName, data.completeChoreInfo)">Submit for Parent Approval</button>
+              <button class="submitCompletedChoreButton" type="button" name="button" ng-click="data.submitComplete(data.choreInfo.choreName, data.completeChoreInfo)">Submit</button>
             </div>
           </div>
         </ion-content>
         <div class="bar bar-footer bar-dark footerLogout">
           <button ng-click="data.logout(data.user)" class="choreFooterLogoutButton" footer button button-clear>Logout</button>
           <i class="iconSize icon ion-ios-close-outline" ng-click="data.logout(data.user)"></i>
-          <button footer button button-clear class="footerReward"><a href="#/child/{{data.id}}/rewards" target="_self">Rewards</a></button>
+          <button footer button button-clear class="footerReward" ng-click="data.rewardsToChores()"><a href="#/child/{{data.id}}/rewards" target="_self">Rewards</a></button>
           <a href="#/child/{{data.id}}/rewards" target="_self"><i class="iconSize icon ion-trophy"></i></a>
         </div>
 </ion-view>

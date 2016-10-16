@@ -9,6 +9,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.showChoreListTitle = true;
   $scope.data.purchaseReward = false;
   $scope.data.showRewards = true;
+  $scope.data.showRewardsTitle = true;
 
   ref.on("value", function(snapshot) {
     let data = snapshot.val();
@@ -41,10 +42,29 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
     $scope.data.showChoreListTitle = false;
   }
 
+  $scope.data.rewardsToChores = function(){
+    $scope.data.showChoreList = true;
+    $scope.data.showChoreListTitle = true;
+    $scope.data.submitCompleteChore = false;
+  }
+
+  $scope.data.backChores = function(){
+    $scope.data.showChoreList = true;
+    $scope.data.submitCompleteChore = false;
+    $scope.data.showChoreListTitle = true;
+  }
+
+  $scope.data.backRewards = function(){
+    $scope.data.purchaseReward = false;
+    $scope.data.showRewards = true;
+    $scope.data.showRewardsTitle = true;
+  }
+
   $scope.data.goRewardPurchase = function(reward){
     $scope.data.rewardInfo = reward;
     $scope.data.purchaseReward = true;
     $scope.data.showRewards = false;
+    $scope.data.showRewardsTitle = false;
   }
 
   $scope.data.submitPurchaseReward = function(reward){
