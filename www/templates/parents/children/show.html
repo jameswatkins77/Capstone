@@ -18,6 +18,7 @@
         <button class="addChoreButton" type="button" name="button" ng-click="data.addChildChore()" ng-show="data.showAddChoreButton === true"> Add Chore </button>
       </div>
     <div class="list" ng-show="data.showEditChildChore === true">
+      <button class="backChildrenShowButton" type="button" name="button" ng-click="data.backChildrenShow()">Go Back</button>
       <label class="choreDetailsName item item-input">
         <input type="text" name="name" value="" placeholder="{{data.editChoreInfo.choreName}}" ng-model="data.editChores.choreName">
       </label>
@@ -63,6 +64,7 @@
       <button class="addRewardButton" type="button" name="button" ng-click="data.addChildReward()" ng-show="data.showAddRewardButton === true"> Add Reward </button>
     </div>
     <div class="list" ng-show="data.showEditChildReward === true">
+      <button class="backChildrenShowButton" type="button" name="button" ng-click="data.backChildrenShow()">Go Back</button>
       <label class="choreDetailsName item item-input">
         <input type="text" name="name" value="" placeholder="{{data.editRewardInfo.rewardName}}" ng-model="data.editReward.rewardName">
       </label>

@@ -460,4 +460,13 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
       }
     })
   }
+
+  $scope.data.backChildrenShow = function(){
+    $scope.data.showEditChildChore = false;
+    $scope.data.showChildRewards = true;
+    $scope.data.showEditChoreButton = true;
+    $scope.data.showAddChoreButton = true;
+    $scope.data.showChildChores = true;
+    $scope.data.showDeleteChildButton = true;
+  }
 });
