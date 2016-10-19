@@ -234,6 +234,7 @@ li:focus{
 .choreList{
   background-color: white;
   width: 80%;
+  min-height: 150px;
   font-size: 20px;
   padding: 2%;
   margin-left: 10%;
