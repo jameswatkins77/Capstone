@@ -10,6 +10,8 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.purchaseReward = false;
   $scope.data.showRewards = true;
   $scope.data.showRewardsTitle = true;
+  $scope.data.childSavingsPoints = 0;
+  $scope.data.childSavingsDays = 0;
 
   ref.on("value", function(snapshot) {
     let data = snapshot.val();

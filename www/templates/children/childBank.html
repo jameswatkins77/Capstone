@@ -1,6 +1,18 @@
 <ion-view view-title="hello">
         <ion-content class="content padding-top">
           <h2 class="childShowTitle" ng-show="data.showChoreListTitle === true">Bank</h2>
+          <hr>
+          <div class="bank">
+            <h3>Spending Account:</h3>
+            <ul>
+              <li>Account Balance: {{data.childPoints}} points.</li>
+            </ul>
+            <h3>Savings Account:</h3>
+            <ul>
+              <li>Savings Account Balance: {{data.childSavingsPoints}} points.</li>
+              <li>Days until interest accrues: {{data.childSavingsDays}} days.</li>
+            </ul>
+          </div>
         </ion-content>
         <div class="bar bar-footer bar-dark footerLogout">
           <button ng-click="data.logout(data.user)" class="bankFooterLogoutButton" footer button button-clear>Logout</button>
