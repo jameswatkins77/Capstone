@@ -119,14 +119,24 @@ a{
 }
 /*Specific to childChores.html*/
 .choreFooterLogoutButton{
-  margin-left: 17%;
+  margin-left: 10%;
+  font-size: 35px;
+  color: white;
+}
+.bankFooterLogoutButton{
+  margin-left: 8%;
+  font-size: 35px;
+  color: white;
+}
+.rewardFooterLogoutButton{
+  margin-left: 11%;
   font-size: 35px;
   color: white;
 }
 .footerReward{
   font-size: 35px;
   color: white;
-  margin-left: 15%;
+  margin-left: 5%;
 }
 .submitCompletedChoreButton{
   background-color: gray;
@@ -152,8 +162,8 @@ a{
   color: white;
 }
 /*Specific to parentChildShow.html*/
-li:focus{
-  color: red;
+.listItem{
+  padding-top: 3%;
 }
 .backChildrenShowButton{
   width: 99px;

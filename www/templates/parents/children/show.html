@@ -4,7 +4,7 @@
         <h2 class="parentShowTitle">Chore List:</h2>
         <div class="choreList">
           <ul ng-repeat="chore in data.choreInfo">
-            <li>
+            <li class="listItem">
               <p ng-click="data.editChore(chore)"><strong>Chore:</strong> {{chore.choreName}}</p>
               <p ng-click="data.editChore(chore)"><strong>Points:</strong> {{chore.chorePoints}}</p>
               <p ng-click="data.editChore(chore)"><strong>Notes:</strong> {{chore.choreNotes}}</p>
@@ -51,7 +51,7 @@
       <h2 class="parentShowTitle">Reward List:</h2>
       <div class="choreList">
         <ol ng-repeat="reward in data.rewardInfo">
-          <li>
+          <li class="listItem">
             <p ng-click="data.editReward(reward)"><strong>Reward:</strong> {{reward.rewardName}}</p>
             <p ng-click="data.editReward(reward)"><strong>Points:</strong> {{reward.rewardPoints}}</p>
             <p ng-click="data.editReward(reward)"><strong>Status:</strong> {{reward.status}}</p>

@@ -38,6 +38,11 @@ angular.module('capstone', ['ionic','firebase','ngStorage','services','ngCordova
      templateUrl: 'templates/children/childRewards.html',
      controller: 'childCtrl'
    })
+   .state('childBank', {
+     url: '/child/:id/bank',
+     templateUrl: 'templates/children/childBank.html',
+     controller: 'childCtrl'
+   })
    .state('parentShowChild', {
      url: '/parent/children/show/:id',
      templateUrl: 'templates/parents/children/show.html',
@@ -53,7 +58,7 @@ angular.module('capstone', ['ionic','firebase','ngStorage','services','ngCordova
    storageBucket: "capstone-bfc2e.appspot.com"
 })
 
-.run(function($ionicPlatform, $cordovaTouchID) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -65,16 +70,16 @@ angular.module('capstone', ['ionic','firebase','ngStorage','services','ngCordova
       StatusBar.styleDefault();
     }
   });
-  $cordovaTouchID.checkSupport().then(function(){
-    $cordovaTouchID.authenticate("Please authenticate with your fingerprint!").then(function() {
-        alert("You are a trusty mate! Come in and find out...")
-    }, function (error) {
-        if (error == "Fallback authentication mechanism selected.") {
-        } else {
-          alert("Sorry, we are not able to grant access.");
-        }
-    });
-  }, function (error) {
-    alert(error);
-  });
+  // $cordovaTouchID.checkSupport().then(function(){
+  //   $cordovaTouchID.authenticate("Please authenticate with your fingerprint!").then(function() {
+  //       alert("You are a trusty mate! Come in and find out...")
+  //   }, function (error) {
+  //       if (error == "Fallback authentication mechanism selected.") {
+  //       } else {
+  //         alert("Sorry, we are not able to grant access.");
+  //       }
+  //   });
+  // }, function (error) {
+  //   alert(error);
+  // });
 })
