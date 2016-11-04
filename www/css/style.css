@@ -345,4 +345,17 @@ h3{
 /*specific to childBank.html*/
 .bank{
   color: white;
+  margin-top: 5%;
+}
+.bankImage{
+  width: 250px;
+  height: 250px;
+  opacity: .8;
+  margin-top: 5%;
+  box-shadow: 5px 5px 2px black;
+}
+.pointsTransfer{
+  background-color: gray;
+  color: black;
+  margin-top: 5%;
 }

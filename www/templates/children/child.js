@@ -12,6 +12,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.showRewardsTitle = true;
   $scope.data.childSavingsPoints = 0;
   $scope.data.childSavingsDays = 0;
+  $scope.data.showPointsTransfer = true;
 
   ref.on("value", function(snapshot) {
     let data = snapshot.val();
@@ -146,5 +147,8 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
       })
     })
     alert("Your parent has been notified that you completed "+completeName+".")
+  }
+  $scope.data.transferPoints = function(){
+    alert("hello")
   }
 });
