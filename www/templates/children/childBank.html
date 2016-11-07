@@ -1,27 +1,32 @@
 <ion-view view-title="hello">
-        <ion-content class="content padding-top">
-          <img class="bankImage" src="img/Bank.png" alt="bank"/>
-          <!-- <h2 class="childShowTitle" ng-show="data.showChoreListTitle === true">Bank</h2> -->
-          <!-- <hr> -->
-          <div class="bank">
-            <h3>Spending Account:</h3>
-            <ul>
-              <li>Account Balance: {{data.childPoints}} points.</li>
-            </ul>
-            <h3>Savings Account:</h3>
-            <ul>
-              <li>Savings Account Balance: {{data.childSavingsPoints}} points.</li>
-              <li>Days until interest accrues: {{data.childSavingsDays}} days.</li>
-            </ul>
-            <button ng-click="data.transferPoints()" class="pointsTransfer" ng-show="data.showPointsTransfer === true" footer button button-clear>Transfer Points</button>
-          </div>
-        </ion-content>
-        <div class="bar bar-footer bar-dark footerLogout">
-          <button ng-click="data.logout(data.user)" class="bankFooterLogoutButton" footer button button-clear>Logout</button>
-          <i class="iconSize icon ion-ios-close-outline" ng-click="data.logout(data.user)"></i>
-          <button footer button button-clear  class="footerReward" ng-click="data.rewardsToChores()"><a href="#/child/{{data.id}}/rewards" target="_self">Rewards</a></button>
-          <a href="#/child/{{data.id}}/rewards" target="_self"><i class="iconSize icon ion-trophy"></i></a>
-          <button footer button button-clear class="footerReward"><a href="#/child/{{data.id}}/chores" target="_self">Chores</a></button>
-          <a href="#/child/{{data.id}}/chores" target="_self"><i class="iconSize icon ion-clipboard"></i></a>
-        </div>
+  <ion-content class="content padding-top">
+    <img class="bankImage" src="img/Bank.png" alt="bank"/>
+    <!-- <h2 class="childShowTitle" ng-show="data.showChoreListTitle === true">Bank</h2> -->
+    <!-- <hr> -->
+    <div class="bank">
+      <h3>Spending Account:</h3>
+      <ul>
+        <li>Account Balance: {{data.childPoints}} points.</li>
+      </ul>
+      <h3>Savings Account:</h3>
+      <ul>
+        <li>Savings Account Balance: {{data.childSavingsPoints}} points.</li>
+        <li>Days until interest accrues: {{data.childSavingsDays}} days.</li>
+      </ul>
+      <button ng-click="data.transferPoints()" class="pointsTransfer" ng-show="data.showPointsTransfer === true" footer button button-clear>Transfer Points</button>
+      <div class="pointsTransferInputDiv" ng-show="data.showPointsTransfer === false">
+        <h3>How many points would you like to transfer?</h3>
+        <input type="number" ng-model="data.pointsTransfer" name="name" value="" class="pointsTransferInput" placeholder="{{data.childPoints}} points available">
+        <button ng-click="data.transferPointsToSavings(data.pointsTransfer)" class="pointsTransfer" footer button button-clear>Transfer Points</button>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer bar-dark footerLogout">
+    <button ng-click="data.logout(data.user)" class="bankFooterLogoutButton" footer button button-clear>Logout</button>
+    <i class="iconSize icon ion-ios-close-outline" ng-click="data.logout(data.user)"></i>
+    <button footer button button-clear  class="footerReward" ng-click="data.rewardsToChores()"><a href="#/child/{{data.id}}/rewards" target="_self">Rewards</a></button>
+    <a href="#/child/{{data.id}}/rewards" target="_self"><i class="iconSize icon ion-trophy"></i></a>
+    <button footer button button-clear class="footerReward"><a href="#/child/{{data.id}}/chores" target="_self">Chores</a></button>
+    <a href="#/child/{{data.id}}/chores" target="_self"><i class="iconSize icon ion-clipboard"></i></a>
+  </div>
 </ion-view>

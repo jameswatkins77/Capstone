@@ -359,3 +359,11 @@ h3{
   color: black;
   margin-top: 5%;
 }
+.pointsTransferInput{
+  width: 180px;
+  margin-left: 27.5%;
+  padding-left: 5% !important;
+}
+.pointsTransferInputDiv{
+  margin-top: 5%;
+}

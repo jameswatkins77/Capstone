@@ -148,7 +148,18 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
     })
     alert("Your parent has been notified that you completed "+completeName+".")
   }
+
   $scope.data.transferPoints = function(){
-    alert("hello")
+    $scope.data.showPointsTransfer = false;
+  }
+  
+  $scope.data.transferPointsToSavings = function(transferPoints){
+    if ($scope.data.childPoints >= transferPoints) {
+      $scope.data.childSavingsPoints += transferPoints;
+      $scope.data.childSavingsDays = 10;
+      $scope.data.childPoints -= transferPoints;
+    } else {
+      alert("You do not have enough points to tranfer that amount.")
+    }
   }
 });
