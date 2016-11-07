@@ -22,7 +22,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
         $scope.data.childChores = data[id].chores;
         $scope.data.childRewards = data[id].rewards;
         $scope.data.childPoints = data[id].points;
-        $scope.data.childSavingsPoints = data[id].savingsPoints;
+        $scope.data.childSavingsPoints = data[id].savings.savingsPoints;
       }
     }
   })
@@ -155,8 +155,11 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
     if ($scope.data.childPoints >= transferPoints) {
       var newPoints = $scope.data.childPoints - transferPoints;
       var newSavingsPoints = $scope.data.childSavingsPoints + transferPoints;
+      console.log("new savings total: "+newSavingsPoints);
       var childID = $scope.data.currentUserId;
       var childUID = $stateParams.id;
+      var timeTransferred = new Date().getTime();
+      console.log("time transferred: "+timeTransferred);
       $scope.data.childSavingsPoints += transferPoints;
       $scope.data.childSavingsDays = 10;
       $scope.data.childPoints -= transferPoints;
@@ -168,7 +171,8 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
             if (childUID === data2[id].id) {
               var lob = id;
               ref.child(data).child('children').child(lob).update({points:newPoints});
-              ref.child(data).child('children').child(lob).update({savingsPoints:newSavingsPoints});
+              ref.child(data).child('children').child(lob).child('savings').update({savingsPoints:newSavingsPoints});
+              ref.child(data).child('children').child(lob).child('savings').update({timePointsTransferred:timeTransferred});
             }
           }
         })
@@ -179,7 +183,8 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
           if (childUID === data2[id2].id) {
             var bar = id2;
             ref.child(bar).update({points:newPoints});
-            ref.child(bar).update({savingsPoints:newSavingsPoints});
+            ref.child(bar).child('savings').update({savingsPoints:newSavingsPoints});
+            ref.child(bar).child('savings').update({timePointsTransferred:timeTransferred});
           }
         }
       })
