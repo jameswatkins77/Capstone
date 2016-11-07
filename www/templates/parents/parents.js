@@ -71,8 +71,8 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
         let data = snapshot.val();
         for (var id in data) {
           if (ParentUid === data[id].id) {
-            firebase.database().ref().child('users').push({id:uid, name:child.name, type:'child', rewards:[], chores:[], points:0, parent:id});
-            ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[], points:0, parent:id})
+            firebase.database().ref().child('users').push({id:uid, name:child.name, type:'child', rewards:[], chores:[], points:0, savingsPoints:0, parent:id});
+            ref.child(id).child('children').push({id:uid, name:child.name, username:child.username, password:child.password, rewards:[], chores:[], points:0, savingsPoints:0, parent:id})
             .then(function(){
               ref.child(parentID).child('children').once("value").then(function(snapshot) {
                 let data = snapshot.val();

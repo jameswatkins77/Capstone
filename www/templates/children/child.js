@@ -22,6 +22,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
         $scope.data.childChores = data[id].chores;
         $scope.data.childRewards = data[id].rewards;
         $scope.data.childPoints = data[id].points;
+        $scope.data.childSavingsPoints = data[id].savingsPoints;
       }
     }
   })
@@ -77,9 +78,6 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
       let bar = foo.val();
       if (bar >= reward.rewardPoints) {
         var diff = bar - reward.rewardPoints;
-        console.log("this is balance: "+bar);
-        console.log("this is reward cost: "+reward.rewardPoints);
-        console.log("this is remaining balance: "+diff);
         ref.child(childID).child('rewards').once('value').then(function(snapshot){
           let data = snapshot.val();
           for (var id in data) {
@@ -152,12 +150,39 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.transferPoints = function(){
     $scope.data.showPointsTransfer = false;
   }
-  
+
   $scope.data.transferPointsToSavings = function(transferPoints){
     if ($scope.data.childPoints >= transferPoints) {
+      var newPoints = $scope.data.childPoints - transferPoints;
+      var newSavingsPoints = $scope.data.childSavingsPoints + transferPoints;
+      var childID = $scope.data.currentUserId;
+      var childUID = $stateParams.id;
       $scope.data.childSavingsPoints += transferPoints;
       $scope.data.childSavingsDays = 10;
       $scope.data.childPoints -= transferPoints;
+      ref.child(childID).child('parent').once('value').then(function(snapshot){
+        let data = snapshot.val();
+        ref.child(data).child('children').once('value').then(function(snapshot2){
+          let data2 = snapshot2.val();
+          for (var id in data2) {
+            if (childUID === data2[id].id) {
+              var lob = id;
+              ref.child(data).child('children').child(lob).update({points:newPoints});
+              ref.child(data).child('children').child(lob).update({savingsPoints:newSavingsPoints});
+            }
+          }
+        })
+      })
+      ref.once('value').then(function(snapshot2){
+        let data2 = snapshot2.val();
+        for (var id2 in data2) {
+          if (childUID === data2[id2].id) {
+            var bar = id2;
+            ref.child(bar).update({points:newPoints});
+            ref.child(bar).update({savingsPoints:newSavingsPoints});
+          }
+        }
+      })
     } else {
       alert("You do not have enough points to tranfer that amount.")
     }
