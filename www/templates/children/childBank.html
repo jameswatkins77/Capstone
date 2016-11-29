@@ -1,8 +1,6 @@
 <ion-view view-title="hello">
   <ion-content class="content padding-top">
     <img class="bankImage" src="img/Bank.png" alt="bank"/>
-    <!-- <h2 class="childShowTitle" ng-show="data.showChoreListTitle === true">Bank</h2> -->
-    <!-- <hr> -->
     <div class="bank">
       <h3>Spending Account:</h3>
       <ul>
@@ -11,7 +9,7 @@
       <h3>Savings Account:</h3>
       <ul>
         <li>Savings Account Balance: {{data.childSavingsPoints}} points.</li>
-        <li>Days until interest accrues: {{data.childSavingsDays}} days.</li>
+        <li ng-show="data.childSavingsPoints !== 0">Days until interest accrues: {{data.childSavingsDays}} days.</li>
       </ul>
       <button ng-click="data.transferPoints()" class="pointsTransfer" ng-show="data.showPointsTransfer === true" footer button button-clear>Transfer Points</button>
       <div class="pointsTransferInputDiv" ng-show="data.showPointsTransfer === false">

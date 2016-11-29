@@ -11,7 +11,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
   $scope.data.showRewards = true;
   $scope.data.showRewardsTitle = true;
   $scope.data.childSavingsPoints = 0;
-  $scope.data.childSavingsDays = 0;
+  $scope.data.childSavingsDays = 10;
   $scope.data.showPointsTransfer = true;
 
   ref.on("value", function(snapshot) {
@@ -155,11 +155,9 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
     if ($scope.data.childPoints >= transferPoints) {
       var newPoints = $scope.data.childPoints - transferPoints;
       var newSavingsPoints = $scope.data.childSavingsPoints + transferPoints;
-      console.log("new savings total: "+newSavingsPoints);
       var childID = $scope.data.currentUserId;
       var childUID = $stateParams.id;
       var timeTransferred = new Date().getTime();
-      console.log("time transferred: "+timeTransferred);
       $scope.data.childSavingsPoints += transferPoints;
       $scope.data.childSavingsDays = 10;
       $scope.data.childPoints -= transferPoints;
