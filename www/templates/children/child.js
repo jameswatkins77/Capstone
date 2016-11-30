@@ -23,6 +23,7 @@ angular.module('capstone').controller('childCtrl', function($scope, user, $state
         $scope.data.childRewards = data[id].rewards;
         $scope.data.childPoints = data[id].points;
         $scope.data.childSavingsPoints = data[id].savings.savingsPoints;
+        $scope.data.childSavingsTimeTransferred = data[id].savings.timePointsTransferred;
       }
     }
   })
