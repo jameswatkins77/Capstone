@@ -37,14 +37,13 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
   });
   var id = $scope.data.currentUserId;
 
-
   $scope.data.logout = function(){
     firebase.auth().signOut().then(function() {
       $state.go("login");
     }, function(error) {
-      console.log("error logging out");
     });
   }
+
   $scope.data.showChildRegistration = false;
   $scope.data.showAddChildReward = false;
   $scope.data.showChildRewards = true;
@@ -86,8 +85,6 @@ angular.module('capstone').controller('parentCtrl', function($scope, $stateParam
     }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;;
-      console.log(errorCode);
-      console.log(errorMessage);
     });
   }
 

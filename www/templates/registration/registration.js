@@ -11,8 +11,6 @@ angular.module('capstone').controller('registrationCtrl', function($scope, $root
     }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;;
-      console.log(errorCode);
-      console.log(errorMessage);
     });
   }
 });
